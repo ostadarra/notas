@@ -23,7 +23,7 @@
                         <h4 class="text-center mt-4">Formulario PHP puro</h4>
                     </div>
                     <div class="card-body">
-                        <form action="servidor.php" method="post">
+                        <form action="notas.php" method="post">
                             <label for="nota">Nota:</label><br>
                             <textarea id="nota" name="nota" rows="4" cols="50"></textarea><br><br>
                             <input type="submit" value="Guardar Nota">
