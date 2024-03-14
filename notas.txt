@@ -1,2 +1,11 @@
 Fecha: 14-03-2024, Hora: 13-27-34, Nota: Esta es la primera nota
 Fecha: 14-03-2024, Hora: 13-27-49, Nota: Ahora va la segunda nota
+Fecha: 14-03-2024, Hora: 13-42-20, Nota: Primera nota con ajax
+Fecha: 14-03-2024, Hora: 13-44-34, Nota: Esta es otra prueba con ajax
+Fecha: 14-03-2024, Hora: 13-46-52, Nota: Vamos allá otra vez
+Fecha: 14-03-2024, Hora: 13-49-47, Nota: Y otra prueba más
+Fecha: 14-03-2024, Hora: 13-52-00, Nota: Seguimos con las pruebas
+Fecha: 14-03-2024, Hora: 13-52-59, Nota: Seguimos trabajando, espere unos instantes
+Fecha: 14-03-2024, Hora: 14-14-42, Nota: A ver si ahora es la refinitiva
+Fecha: 14-03-2024, Hora: 14-20-14, Nota: Continuamos con las pruebas para ver si el señor ha acertado
+Fecha: 14-03-2024, Hora: 14-20-28, Nota: Esta es la refinitiva

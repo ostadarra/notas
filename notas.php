@@ -20,13 +20,9 @@ if(isset($_POST['nota'])) {
     fwrite($gestorArchivo, $contenidoNota);
     // Cierra el archivo
     fclose($gestorArchivo);
-?>
-<script>
-    window.location.replace("index.php");
-</script>
-
-<?
+    //Respuesta ajax
+    echo 1;
 } else {
-    echo "Error: No se ha recibido ninguna nota.";
+    echo 0;
 }
 ?>

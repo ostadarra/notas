@@ -1,10 +1,3 @@
-<?php
-    // Lee el contenido del archivo notas.txt
-    if (file_exists("notas.txt")){
-        $contenido = file("notas.txt");
-    }
- 
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,10 +13,10 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-center mt-4">Formulario PHP puro</h4>
+                        <h4 class="text-center mt-4">Formulario Ajax</h4>
                     </div>
                     <div class="card-body">
-                        <form action="notas.php" method="post">
+                        <form action="notas.php" method="post" id="formulario">
                             <label for="nota">Nota:</label><br>
                             <textarea id="nota" name="nota" rows="4" cols="50"></textarea><br><br>
                             <input type="submit" value="Guardar Nota">
@@ -38,42 +31,17 @@
                     <h4 class="text-center mt-4">Listado de Notas</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-success table-striped">
+                    <table class="table table-success table-striped" id="tabla">
                         <thead>
                             <tr>
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Nota</th>
-                                <!-- <th>Acciones</th> -->
                             </tr>
                         </thead>
                         <tbody>
 <?php
-                        if(!empty($contenido)){
-                            foreach($contenido as $linea) {
-                                // Divide la línea en partes separadas por la coma
-                                $partes = explode(",", $linea);
-                                // Extrae la fecha, hora y nota de las partes
-                                $fecha = trim(explode(":", $partes[0])[1]);
-                                $tiempo = trim(explode(":", $partes[1])[1]);
-                                $hora = explode("-", $tiempo)[0];
-                                $minutos = explode("-", $tiempo)[1];
-                                $hora_minutos = $hora . ':' . $minutos;
-                                $nota = trim(explode(":", $partes[2])[1]);
-                                // Imprime una fila de la tabla con los datos
-                                echo "<tr>";
-                                echo "<td>$fecha</td>";
-                                echo "<td>$hora_minutos</td>";
-                                echo "<td>$nota</td>";
-                                // echo "<td></td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            ?>
-                            <p>No hay ninguna nota aún.
-                            Usa el formulario para crearlas</p>
-                            <?
-                        }
+                            include 'leer.php'; 
 ?>
                         </tbody>
                     </table>
@@ -83,5 +51,35 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+  <script>
+        $(document).ready(function(){
+            // Escuchar el evento submit del formulario
+            $('#formulario').submit(function(e){
+                e.preventDefault(); // Evitar envío tradicional del formulario
+                // Realizar la solicitud Ajax
+                $.ajax({
+                    type: 'POST',
+                    url: 'notas.php',
+                    data: $(this).serialize(), // Serializar el formulario
+                    success: function(response) {
+                        if(response === '1') {
+                            // Cargar el contenido de leer.php y agregarlo a la tabla existente
+                            $.get('leer.php', function(data) {
+                                $('#tabla tbody').html(data);
+                            });
+                            // Limpiar el formulario después de la inserción exitosa
+                            $('#nota').val('');
+                        } else {
+                            alert('Error al guardar la nota.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
