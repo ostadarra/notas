@@ -1,0 +1,1 @@
+Con este proyecto se quier mostrar como se pueden guardar en un repositorio diferentes ramas del desarrollo. Para ello se ha creado la rama "main" que envia un formulario con php puro y otra rama llamada "ajax" que hace el envio con est tecnología
